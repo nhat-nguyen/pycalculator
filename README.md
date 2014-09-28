@@ -8,3 +8,4 @@ pycalculator
 Current limitations (being worked on)
 + cannot calculate expressions containing decimal numbers
 + cannot calculate expressions containing negative numbers
++ cannot calculate reduced expressions (such as 7(8) = 56)
