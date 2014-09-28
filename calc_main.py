@@ -7,8 +7,6 @@ from shuntingyard_algorithm import *
 
 from Tkinter import *
 
-operators = ['+', '-', '*', '/']
-
 class calcWindow:
 	def change(self):
 		self.clearme = not self.clearme
@@ -80,12 +78,8 @@ class calcWindow:
 
 		self.equal = Button(window, text = '=', command = lambda: self.printResults()).grid(row = 4, column = 3, columnspan = 3)
 
-
-
 root = Tk()
 
 Nhat = calcWindow(root)
 
 root.mainloop()
-
-a = []

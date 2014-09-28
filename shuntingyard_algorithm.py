@@ -1,3 +1,5 @@
+# Returns a list containing the index of each number
+# in the string
 def numberIndex(mystring):
 	myindex = []
 	length = len(mystring)
@@ -7,9 +9,6 @@ def numberIndex(mystring):
 		if isNumber(mystring[i]) and (i == length - 1 or mystring[i + 1] == ')' or isOperator(mystring[i + 1])):
 			myindex.append(i)
 	return myindex
-
-def pullNumbers(mystring):
-	'+'.split(mystring)
 
 # Check if the list is empty or not
 def isEmpty(mylist):
@@ -120,20 +119,4 @@ def calcPostfix(mystring):
 		else:
 			print 'Syntax error'
 			return -1
-
 	return popLast(mystack)
-
-if __name__ == '__main__':
-
-	# [2 1]
-	# [* +]
-	#print isNumber('n')
-	#a = raw_input('Hello: ')
-	b = []
-	c = []
-	d = []
-	inTOpost('1+2', b)
-
-	print b
-
-	print calcPostfix(b)
