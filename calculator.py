@@ -1,14 +1,13 @@
+""""""""""""""""""""
 import os
 
 import sys
 
-from shuntingyard import *
+from shuntingyard_algorithm import *
 
 from Tkinter import *
 
 class calcWindow:
-	def change(self):
-		self.clearme = not self.clearme
 
 	def add(self, number):
 		if self.clearme:
