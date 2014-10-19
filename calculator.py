@@ -1,9 +1,8 @@
-""""""""""""""""""""
 import os
 
 import sys
 
-from shuntingyard_algorithm import *
+from shuntingyard import *
 
 from Tkinter import *
 

@@ -1,14 +1,12 @@
 # Returns a list containing the index of each number
 # in the string
-def numberIndex(mystring):
-	myindex = []
+def numberIndex(mystring, myindex):
 	length = len(mystring)
 	for i in range(0, length):
 		if isNumber(mystring[i]) and (i == 0 or mystring[i - 1] == '(' or isOperator(mystring[i - 1])):
 			myindex.append(i)
 		if isNumber(mystring[i]) and (i == length - 1 or mystring[i + 1] == ')' or isOperator(mystring[i + 1])):
 			myindex.append(i)
-	return myindex
 
 # Check if the list is empty or not
 def isEmpty(mylist):
@@ -51,9 +49,9 @@ def opPriority(operator):
 def inTOpost(mystring, array_postfix):
 	# An array used to store operators. It acts like a stack
 	mystack = []
-
+	myindex = []
 	# Index for the numbers
-	myindex = numberIndex(mystring)
+	numberIndex(mystring, myindex)
 	i = 0
 	while i < len(mystring):
 		# If the character is a number, push it to the postfix string
