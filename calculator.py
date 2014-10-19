@@ -1,14 +1,7 @@
-""""""""""""""""""""
-import os
-
-import sys
-
-from shuntingyard_algorithm import *
-
+from shuntingyard import *
 from Tkinter import *
 
 class calcWindow:
-
 	def add(self, number):
 		if self.clearme:
 			self.textbox.delete(0, END)
@@ -27,11 +20,8 @@ class calcWindow:
 		self.textbox.insert(0, calcPostfix(postfix))
 
 	def __init__(self, master):
-
 		self.clearme = False
-
-		window = Frame(master)
-		
+		window = Frame(master)		
 		window.pack()
 
 		self.v = StringVar()
@@ -77,7 +67,5 @@ class calcWindow:
 		self.equal = Button(window, text = '=', command = lambda: self.printResults()).grid(row = 4, column = 3, columnspan = 3)
 
 root = Tk()
-
 Nhat = calcWindow(root)
-
 root.mainloop()
