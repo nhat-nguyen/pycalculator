@@ -64,13 +64,13 @@ class calcWindow:
 
 		self.dot = Button(window, text = '.', command = lambda: self.add('.')).grid(row = 4, column = 2)
 
-		self.one = Button(window, text = '+', command = lambda: self.add('+')).grid(row = 1, column = 4)
+		self.plus = Button(window, text = '+', command = lambda: self.add('+')).grid(row = 1, column = 4)
 
-		self.one = Button(window, text = '-', command = lambda: self.add('-')).grid(row = 2, column = 4)
+		self.minus = Button(window, text = '-', command = lambda: self.add('-')).grid(row = 2, column = 4)
 
-		self.one = Button(window, text = '*', command = lambda: self.add('*')).grid(row = 1, column = 5)
+		self.times = Button(window, text = '*', command = lambda: self.add('*')).grid(row = 1, column = 5)
 
-		self.one = Button(window, text = '/', command = lambda: self.add('/')).grid(row = 2, column = 5)
+		self.slash = Button(window, text = '/', command = lambda: self.add('/')).grid(row = 2, column = 5)
 
 		self.lbrackets = Button(window, text = '(', command = lambda: self.add('(')).grid(row = 3, column = 4)
 
