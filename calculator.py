@@ -47,25 +47,25 @@ class calcWindow:
 
 		self.one = Button(window, text = '1', command = lambda: self.add(1)).grid(row = 3, column = 3)
 
-		self.zero = Button(window, text = '0', command = lambda: self.add(0)).grid(row = 4, column = 1)
+		self.zero = Button(window, text = '0         ', command = lambda: self.add(0)).grid(row = 4, column = 1, columnspan = 2)
 
-		self.dot = Button(window, text = '.', command = lambda: self.add('.')).grid(row = 4, column = 2)
+		self.dot = Button(window, text = '.', command = lambda: self.add('.')).grid(row = 4, column = 3)
 
-		self.plus = Button(window, text = '+', command = lambda: self.add('+')).grid(row = 1, column = 4)
+		self.plus = Button(window, text = '+', command = lambda: self.add('+')).grid(row = 4, column = 4)
 
-		self.minus = Button(window, text = '-', command = lambda: self.add('-')).grid(row = 2, column = 4)
+		self.minus = Button(window, text = '-', command = lambda: self.add('-')).grid(row = 3, column = 4)
 
-		self.times = Button(window, text = '*', command = lambda: self.add('*')).grid(row = 1, column = 5)
+		self.times = Button(window, text = '*', command = lambda: self.add('*')).grid(row = 2, column = 4)
 
-		self.slash = Button(window, text = '/', command = lambda: self.add('/')).grid(row = 2, column = 5)
+		self.slash = Button(window, text = '/', command = lambda: self.add('/')).grid(row = 1, column = 4)
 
-		self.lbrackets = Button(window, text = '(', command = lambda: self.add('(')).grid(row = 3, column = 4)
+		self.lbrackets = Button(window, text = '(', command = lambda: self.add('(')).grid(row = 2, column = 5)
 
 		self.rbrackets = Button(window, text = ')', command = lambda: self.add(')')).grid(row = 3, column = 5)
 
-		self.equal = Button(window, text = '=', command = lambda: self.printResults()).grid(row = 4, column = 3, columnspan = 3)
+		self.equal = Button(window, text = '=', command = lambda: self.printResults()).grid(row = 4, column = 5)
 
-		self.clear = Button(window, text = 'C', command = lambda: self.clearTextbox()).grid(row = 1, column = 6, columnspan = 3)
+		self.clear = Button(window, text = 'C', command = lambda: self.clearTextbox()).grid(row = 1, column = 5)
 
 root = Tk()
 Nhat = calcWindow(root)
