@@ -4,17 +4,22 @@ from Tkinter import *
 class calcWindow:
 
 	def add(self, number):
-		self.textbox.insert(END, number)
+		if ((not isOperator(number)) and len(self.v.get()) == 0) or (len(self.v.get()) > 0) or number == '-':
+			self.textbox.insert(END, number)
 	
 	def clearTextbox(self):
 		self.textbox.delete(0, END)
 		del self.postfix[:]
 
 	def printResults(self):
-		infix = self.v.get()	
+		# remove all the spaces in the input
+		infix = self.v.get()
+		infix = infix.replace(' ', '')
 		inTOpost(infix, self.postfix)
 		self.textbox.delete(0, END)
-		self.textbox.insert(0, calcPostfix(self.postfix))
+		result = calcPostfix(self.postfix)
+		self.textbox.insert(0, result)
+
 		del self.postfix [1:]
 
 	def __init__(self, master):
@@ -27,7 +32,7 @@ class calcWindow:
 
 		self.textbox = Entry(window, textvariable = self.v)
 
-		self.textbox.grid(row = 0, columnspan = 10)
+		self.textbox.grid(row = 0, columnspan = 6)
 
 		self.nine = Button(window, text = '9', command = lambda: self.add(9)).grid(row = 1, column = 1)
 		
@@ -47,7 +52,7 @@ class calcWindow:
 
 		self.one = Button(window, text = '1', command = lambda: self.add(1)).grid(row = 3, column = 3)
 
-		self.zero = Button(window, text = '0         ', command = lambda: self.add(0)).grid(row = 4, column = 1, columnspan = 2)
+		self.zero = Button(window, text = '0          ', command = lambda: self.add(0)).grid(row = 4, column = 1, columnspan = 2)
 
 		self.dot = Button(window, text = '.', command = lambda: self.add('.')).grid(row = 4, column = 3)
 
@@ -55,13 +60,13 @@ class calcWindow:
 
 		self.minus = Button(window, text = '-', command = lambda: self.add('-')).grid(row = 3, column = 4)
 
-		self.times = Button(window, text = '*', command = lambda: self.add('*')).grid(row = 2, column = 4)
+		self.multiply = Button(window, text = unichr(215), command = lambda: self.add('*')).grid(row = 2, column = 4)
 
-		self.slash = Button(window, text = '/', command = lambda: self.add('/')).grid(row = 1, column = 4)
+		self.divide = Button(window, text = unichr(247), command = lambda: self.add('/')).grid(row = 1, column = 4)
 
-		self.lbrackets = Button(window, text = '(', command = lambda: self.add('(')).grid(row = 2, column = 5)
+		self.openBrackets = Button(window, text = '(', command = lambda: self.add('(')).grid(row = 2, column = 5)
 
-		self.rbrackets = Button(window, text = ')', command = lambda: self.add(')')).grid(row = 3, column = 5)
+		self.closeBrackets = Button(window, text = ')', command = lambda: self.add(')')).grid(row = 3, column = 5)
 
 		self.equal = Button(window, text = '=', command = lambda: self.printResults()).grid(row = 4, column = 5)
 
@@ -71,7 +76,7 @@ root = Tk()
 
 root.minsize(width = 200, height = 150)
 root.maxsize(width = 200, height = 150)
-root.wm_title("pycalculator")
+root.wm_title(unichr(961) + unichr(611) + " calculator")
 
 Nhat = calcWindow(root)
 root.mainloop()

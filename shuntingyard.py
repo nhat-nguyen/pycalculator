@@ -33,9 +33,14 @@ def isOperator(i):
 # Returns a list containing the index of each number in the string
 def numberIndex(mystring, myindex):
 	length = len(mystring)
+	usedBefore = False
 	for i in range(0, length):
-		if isNumber(mystring[i]) and (i == 0 or mystring[i - 1] == '(' or isOperator(mystring[i - 1])):
+		# if (mystring[i] == '-' and i == 0) or (i < length - 2 and isNumber(mystring[i + 1]) and isOperator(mystring[i - 1])):
+		# 	myindex.append(i)
+		# 	usedBefore = True
+		if isNumber(mystring[i]) and (i == 0 or mystring[i - 1] == '(' or isOperator(mystring[i - 1])) and ((not usedBefore) or i == length - 1):
 			myindex.append(i)
+			usedBefore = False
 		if isNumber(mystring[i]) and (i == length - 1 or mystring[i + 1] == ')' or isOperator(mystring[i + 1])):
 			myindex.append(i)
 
@@ -105,8 +110,12 @@ def calcPostfix(mystring):
 		if isNumber(item):
 			mystack.append(float(item))
 		elif isOperator(item):
-			a = (popLast(mystack))
-			b = (popLast(mystack))
+			if len(mystack) == 0:
+				return "syntax error"
+			a = popLast(mystack)
+			if len(mystack) == 0:
+				return "syntax error"
+			b = popLast(mystack)
 			if item == '+':
 				c = b + a
 			elif item == '-':
@@ -116,9 +125,6 @@ def calcPostfix(mystring):
 			elif item == '/':
 				c = b / a
 			mystack.append(c)
-		else:
-			print 'Syntax error'
-			return -1
 	results = popLast(mystack)
 	if int(results) == results:
 		return int(results)
