@@ -6,6 +6,5 @@ pycalculator
 + provides a simple user-interface using Tkinter library
 
 Current limitations (being worked on)
-+ cannot calculate expressions containing decimal numbers
 + cannot calculate expressions containing negative numbers
 + cannot calculate expressions with reduced form (such as 7(8) = 56)
