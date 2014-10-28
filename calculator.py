@@ -2,25 +2,24 @@ from shuntingyard import *
 from Tkinter import *
 
 class calcWindow:
+
 	def add(self, number):
-		if self.clearme:
-			self.textbox.delete(0, END)
-			self.clearme = False
 		self.textbox.insert(END, number)
 	
 	def clearTextbox(self):
 		self.textbox.delete(0, END)
+		del self.postfix[:]
 
 	def printResults(self):
-		self.clearme = True
-		infix = self.v.get()
-		postfix = []
-		inTOpost(infix, postfix)
+		infix = self.v.get()	
+		inTOpost(infix, self.postfix)
 		self.textbox.delete(0, END)
-		self.textbox.insert(0, calcPostfix(postfix))
+		self.textbox.insert(0, calcPostfix(self.postfix))
+		del self.postfix [1:]
 
 	def __init__(self, master):
 		self.clearme = False
+		self.postfix = []
 		window = Frame(master)		
 		window.pack()
 
@@ -65,6 +64,8 @@ class calcWindow:
 		self.rbrackets = Button(window, text = ')', command = lambda: self.add(')')).grid(row = 3, column = 5)
 
 		self.equal = Button(window, text = '=', command = lambda: self.printResults()).grid(row = 4, column = 3, columnspan = 3)
+
+		self.clear = Button(window, text = 'C', command = lambda: self.clearTextbox()).grid(row = 1, column = 6, columnspan = 3)
 
 root = Tk()
 Nhat = calcWindow(root)
