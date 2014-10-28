@@ -1,12 +1,5 @@
-# Returns a list containing the index of each number
-# in the string
-def numberIndex(mystring, myindex):
-	length = len(mystring)
-	for i in range(0, length):
-		if isNumber(mystring[i]) and (i == 0 or mystring[i - 1] == '(' or isOperator(mystring[i - 1])):
-			myindex.append(i)
-		if isNumber(mystring[i]) and (i == length - 1 or mystring[i + 1] == ')' or isOperator(mystring[i + 1])):
-			myindex.append(i)
+# def getDecimal(mystring):
+# 	for i in range(0, len(mystring)):
 
 # Check if the list is empty or not
 def isEmpty(mylist):
@@ -37,6 +30,15 @@ def isOperator(i):
 		return True
 	return False
 
+# Returns a list containing the index of each number in the string
+def numberIndex(mystring, myindex):
+	length = len(mystring)
+	for i in range(0, length):
+		if isNumber(mystring[i]) and (i == 0 or mystring[i - 1] == '(' or isOperator(mystring[i - 1])):
+			myindex.append(i)
+		if isNumber(mystring[i]) and (i == length - 1 or mystring[i + 1] == ')' or isOperator(mystring[i + 1])):
+			myindex.append(i)
+
 def opPriority(operator):
 	if operator == '*' or operator == '/':
 		return 2
@@ -46,7 +48,7 @@ def opPriority(operator):
 		return 0
 
 # Converts from infix to postfix notation (Reverse polish)
-def inTOpost(mystring, array_postfix):
+def inTOpost(mystring, arrayPostFix):
 	# An array used to store operators. It acts like a stack
 	mystack = []
 	myindex = []
@@ -56,7 +58,7 @@ def inTOpost(mystring, array_postfix):
 	while i < len(mystring):
 		# If the character is a number, push it to the postfix string
 		if i in myindex:
-			array_postfix.append(mystring[myindex[0] : myindex[1] + 1])
+			arrayPostFix.append(float(mystring[myindex[0] : myindex[1] + 1]))
 			i = myindex[1] + 1
 			if i == len(mystring):
 				i -= 1
@@ -80,7 +82,7 @@ def inTOpost(mystring, array_postfix):
 		elif isOperator(mystring[i]): 
 			if (not isEmpty(mystack)):
 				while (opPriority(mystring[i]) <= opPriority(lastValue(mystack))):
-					array_postfix.append(popLast(mystack))
+					arrayPostFix.append(popLast(mystack))
 					if len(mystack) == 0:
 						break
 			mystack.append(mystring[i])
@@ -88,14 +90,14 @@ def inTOpost(mystring, array_postfix):
 		# If the character is ')', we will push all the items in the stack to the postfix until we see a '('
 		elif mystring[i] == ')':
 			while lastValue(mystack) != '(':
-				array_postfix.append(popLast(mystack))
+				arrayPostFix.append(popLast(mystack))
 			popLast(mystack)
 
 		i += 1
 
 	# Put the remaining items to the postfix
 	while (not isEmpty(mystack)):
-		array_postfix.append(popLast(mystack))
+		arrayPostFix.append(popLast(mystack))
 
 def calcPostfix(mystring):
 	mystack = []
@@ -117,4 +119,7 @@ def calcPostfix(mystring):
 		else:
 			print 'Syntax error'
 			return -1
-	return popLast(mystack)
+	results = popLast(mystack)
+	if int(results) == results:
+		return int(results)
+	return results
