@@ -8,3 +8,7 @@ pycalculator
 Current limitations (being worked on)
 + cannot calculate expressions containing negative numbers
 + cannot calculate expressions with reduced form (such as 7(8) = 56)
+
+Preview
+
+![alt tag] (https://raw.githubusercontent.com/nhat-nguyen/pycalculator/master/preview.png)
