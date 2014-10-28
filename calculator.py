@@ -27,7 +27,7 @@ class calcWindow:
 
 		self.textbox = Entry(window, textvariable = self.v)
 
-		self.textbox.grid(row = 0, columnspan = 6)
+		self.textbox.grid(row = 0, columnspan = 10)
 
 		self.nine = Button(window, text = '9', command = lambda: self.add(9)).grid(row = 1, column = 1)
 		
@@ -68,5 +68,10 @@ class calcWindow:
 		self.clear = Button(window, text = 'C', command = lambda: self.clearTextbox()).grid(row = 1, column = 5)
 
 root = Tk()
+mainWidth = 200
+mainHeight = 150
+
+root.minsize(width = mainWidth, height = mainHeight)
+root.maxsize(width = mainWidth, height = mainHeight)
 Nhat = calcWindow(root)
 root.mainloop()
