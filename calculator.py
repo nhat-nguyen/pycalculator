@@ -68,10 +68,10 @@ class calcWindow:
 		self.clear = Button(window, text = 'C', command = lambda: self.clearTextbox()).grid(row = 1, column = 5)
 
 root = Tk()
-mainWidth = 200
-mainHeight = 150
 
-root.minsize(width = mainWidth, height = mainHeight)
-root.maxsize(width = mainWidth, height = mainHeight)
+root.minsize(width = 200, height = 150)
+root.maxsize(width = 200, height = 150)
+root.wm_title("pycalculator")
+
 Nhat = calcWindow(root)
 root.mainloop()
