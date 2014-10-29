@@ -7,7 +7,6 @@ pycalculator
 + can handle fullly natural arithmetic expression, such as 5 * 9 / (4+5) / (1 - (2 + 3)) ...
 
 Current limitations (being worked on)
-+ cannot calculate input expressions containing negative numbers
 + cannot calculate input expressions with reduced form, such as 7(8) = 56
 
 Preview
