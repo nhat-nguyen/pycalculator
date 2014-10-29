@@ -1,6 +1,3 @@
-# def getDecimal(mystring):
-# 	for i in range(0, len(mystring)):
-
 # Check if the list is empty or not
 def isEmpty(mylist):
 	return (len(mylist) == 0)
@@ -31,17 +28,19 @@ def isOperator(i):
 	return False
 
 
-def removeNegativeSign(number):
-	count = 0
+def removeSign(number):
+	if '/' in number or '*' in number:
+		return "syntax error"
+	countNegative = 0
+	number = number.replace('+', '')
 	for i in number:
 		if i == '-':
-			count += 1
+			countNegative += 1
 	number = number.replace('-', '')
-	if count % 2 == 0:
+	if countNegative % 2 == 0:
 		return float(number)
 	else:
 		return -float(number)
-
 
 # Returns a list containing the index of each number in the string
 def numberIndex(mystring, myindex):
@@ -49,11 +48,9 @@ def numberIndex(mystring, myindex):
 	for j in range(0, length):
 		if isNumber(mystring[j]) or mystring[j] == '-':
 			myindex.append(j)
-			break
-			
+			break			
 	if j == length - 1:
 		myindex.append(j)
-	
 	else:
 		for i in range(j, length - 1):
 			if isNumber(mystring[i]) and (isOperator(mystring[i + 1]) or mystring[i + 1] == ')'):
@@ -104,7 +101,11 @@ def inTOpost(mystring, arrayPostFix):
 		# If the character is a number, push it to the postfix string
 		if i in myindex:
 			number = mystring[myindex[0] : myindex[1] + 1]
-			number = removeNegativeSign(number)
+			number = removeSign(number)
+
+			if isNumber(number):
+				return 0
+
 			arrayPostFix.append(number)
 			i = myindex[1] + 1
 			if i == len(mystring):
@@ -145,6 +146,8 @@ def inTOpost(mystring, arrayPostFix):
 	# Put the remaining items to the postfix
 	while (not isEmpty(mystack)):
 		arrayPostFix.append(popLast(mystack))
+
+	return 1
 
 def calcPostfix(mystring):
 	mystack = []

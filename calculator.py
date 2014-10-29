@@ -15,9 +15,12 @@ class calcWindow:
 		# remove all the spaces in the input
 		infix = self.v.get()
 		infix = infix.replace(' ', '')
-		inTOpost(infix, self.postfix)
+		noError = inTOpost(infix, self.postfix)
 		self.textbox.delete(0, END)
-		result = calcPostfix(self.postfix)
+		if (noError):
+			result = calcPostfix(self.postfix)
+		else:
+			result = u"\u2612"+" Error. " + u"\u2639"
 		self.textbox.insert(0, result)
 
 		del self.postfix [1:]
