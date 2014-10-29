@@ -30,19 +30,59 @@ def isOperator(i):
 		return True
 	return False
 
+
+def removeNegativeSign(number):
+	count = 0
+	for i in number:
+		if i == '-':
+			count += 1
+	number = number.replace('-', '')
+	if count % 2 == 0:
+		return float(number)
+	else:
+		return -float(number)
+
+
 # Returns a list containing the index of each number in the string
 def numberIndex(mystring, myindex):
 	length = len(mystring)
-	usedBefore = False
-	for i in range(0, length):
-		# if (mystring[i] == '-' and i == 0) or (i < length - 2 and isNumber(mystring[i + 1]) and isOperator(mystring[i - 1])):
-		# 	myindex.append(i)
-		# 	usedBefore = True
-		if isNumber(mystring[i]) and (i == 0 or mystring[i - 1] == '(' or isOperator(mystring[i - 1])) and ((not usedBefore) or i == length - 1):
-			myindex.append(i)
-			usedBefore = False
-		if isNumber(mystring[i]) and (i == length - 1 or mystring[i + 1] == ')' or isOperator(mystring[i + 1])):
-			myindex.append(i)
+	for j in range(0, length):
+		if isNumber(mystring[j]) or mystring[j] == '-':
+			myindex.append(j)
+			break
+			
+	if j == length - 1:
+		myindex.append(j)
+	
+	else:
+		for i in range(j, length - 1):
+			if isNumber(mystring[i]) and (isOperator(mystring[i + 1]) or mystring[i + 1] == ')'):
+				myindex.append(i)
+				break
+		i += 1
+		while i < length:
+			if isOperator(mystring[i]):
+				if isNumber(mystring[i - 1]) or mystring[i - 1] == ')':
+					for j in range(i + 1, length):
+						if isNumber(mystring[j]) or isOperator(mystring[j]):
+							myindex.append(j)
+							break
+					for k in range(j, length - 1):
+						if isNumber(mystring[k]) and (isOperator(mystring[k + 1]) or mystring[k + 1] == ')'):
+							myindex.append(k)
+							break
+				i += 2
+			else:
+				i += 1
+
+		i = length - 1
+		
+		while i >= 0:
+			if isNumber(mystring[i]):
+				myindex.append(i)
+				break
+			i -= 1
+			
 
 def opPriority(operator):
 	if operator == '*' or operator == '/':
@@ -63,7 +103,9 @@ def inTOpost(mystring, arrayPostFix):
 	while i < len(mystring):
 		# If the character is a number, push it to the postfix string
 		if i in myindex:
-			arrayPostFix.append(float(mystring[myindex[0] : myindex[1] + 1]))
+			number = mystring[myindex[0] : myindex[1] + 1]
+			number = removeNegativeSign(number)
+			arrayPostFix.append(number)
 			i = myindex[1] + 1
 			if i == len(mystring):
 				i -= 1
