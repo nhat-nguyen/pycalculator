@@ -103,7 +103,7 @@ def inTOpost(mystring, arrayPostFix):
 			number = mystring[myindex[0] : myindex[1] + 1]
 			number = removeSign(number)
 
-			if isNumber(number):
+			if not isNumber(number):
 				return 0
 
 			arrayPostFix.append(number)
